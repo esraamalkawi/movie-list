@@ -19,6 +19,11 @@ const movies = [
     name: "Joker",
     watched: false,
   },
+  {
+    id: 5,
+    name: "Tom & Jerry",
+    watched: true,
+  },
 ];
 
 export default movies;

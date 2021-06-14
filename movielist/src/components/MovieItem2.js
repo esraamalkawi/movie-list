@@ -3,21 +3,22 @@ import { addMovie, deleteMovie, switchList } from "../store/actions";
 
 const MovieItem2 = (props) => {
   const dispatch = useDispatch();
-
   const handleDelete = () => {
-    if (props.movie.watched) {
-      dispatch(addMovie(props.movie));
-    }
+    // if(props.movie.watched){
+    //     dispatch(addMovie(props.movie))
+    // }
     dispatch(deleteMovie(props.movie));
   };
 
   const handleSwitch = () => {
-    const itemId = props.movie;
+    // const itemId = props.movie
 
-    if (props.movie.watched) {
-      dispatch(switchList(itemId.id));
-    }
-    dispatch(addMovie(props.movie));
+    //     if(props.movie.watched){
+    //
+    dispatch(switchList(props.movie));
+
+    //     }
+    //    dispatch(addMovie(props.movie))
   };
 
   return (
@@ -25,7 +26,9 @@ const MovieItem2 = (props) => {
       <p>{props.movie.watched ? props.movie.name : ""}</p>
       <span>
         {props.movie.watched ? (
-          <button onClick={handleSwitch}>{"watched"}</button>
+          <button onClick={handleSwitch} className="btn btn-dark">
+            {"unwatched"}
+          </button>
         ) : (
           ""
         )}
@@ -33,7 +36,9 @@ const MovieItem2 = (props) => {
 
       <span>
         {props.movie.watched ? (
-          <button onClick={handleDelete}>{"Delete"}</button>
+          <button onClick={handleDelete} className="btn btn-danger">
+            {"Delete"}
+          </button>
         ) : (
           ""
         )}

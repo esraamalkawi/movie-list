@@ -1,38 +1,43 @@
 import { useDispatch } from "react-redux";
 import { deleteMovie } from "../store/actions";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
+import { switchToWatchedList } from "../store/actions";
 
-const MovieItem = (props) => {
-  // const selMovies = useSelector((state) => state.movies);
-  // selMovies.find((movie) => movie.id === selMovies[selMovies.length - 1].id);
-
-  // const filtered = movies.filter((movie) => movie.watched === false);
-  // let cont = filtered.length;
-  // console.log(cont);
-  // const [counter, setCounter] = useState(cont);
-
+const MovieItem1 = (props) => {
   const dispatch = useDispatch();
   const handleDelete = () => {
     dispatch(deleteMovie(props.movie));
-    //setCounter(counter - 1);
   };
 
-  const selMovies = useSelector((state) => state.movies);
-  selMovies.find((movie) => movie.id === selMovies[selMovies.length - 1].id);
+  // const selMovies = useSelector((state) => state.movies)
+  // selMovies.find((movie) => movie.id===selMovies[selMovies.length-1].id)
+  const handleSwitch = () => {
+    dispatch(switchToWatchedList(props.movie));
+  };
 
   return (
     <div>
       <p>{props.movie.watched ? "" : props.movie.name}</p>
-      <span>{props.movie.watched ? "" : <button>{"unwatched"}</button>}</span>
       <span>
         {props.movie.watched ? (
           ""
         ) : (
-          <button onClick={handleDelete}>{"Delete"}</button>
+          <button onClick={handleSwitch} className="btn btn-success">
+            {"watch"}
+          </button>
+        )}
+      </span>
+      <span>
+        {props.movie.watched ? (
+          ""
+        ) : (
+          <button onClick={handleDelete} className="btn btn-danger">
+            {"Delete"}
+          </button>
         )}
       </span>
     </div>
   );
 };
 
-export default MovieItem;
+export default MovieItem1;

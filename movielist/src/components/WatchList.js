@@ -8,9 +8,10 @@ import { addMovie } from "../store/actions";
 const WatchList = () => {
   const [query, setQuery] = useState("");
   const [add, setAdd] = useState("");
-
+  //
   const dispatch = useDispatch();
-
+  // const counter = useSelector((state) => state.counter);
+  //
   const movies = useSelector((state) => state.movies);
   const movie = movies
     .filter((movie) => movie.name.toLowerCase().includes(query.toLowerCase()))
@@ -29,33 +30,41 @@ const WatchList = () => {
     setAdd({
       name: "",
     });
+    // setCounter(cont);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(addMovie(add));
     setCounter(counter + 1);
-    //console.log(counter);
     resetInput();
   };
-  console.log(counter);
+
   return (
     <div>
       <div>
+        {/* <p>{filtered.length}</p> */}
         <form onSubmit={handleSubmit}>
           <input
+            className="addn"
             type="text"
-            placeholder="Your moive name"
             onChange={handleChange}
             name="name"
             value={add.name}
           />
-          <button type="submit">Add Movie</button>
+
+          <button type="submit" className="btn btn-outline-dark">
+            Add a Movie{" "}
+          </button>
         </form>
       </div>
       <div>
-        <h2>Watch list {counter}</h2>
-        <SearchBar setQuery={setQuery} />
+        <h2>Watch list ({counter}) </h2>
+        <span className="dd">
+          <SearchBar setQuery={setQuery} />
+        </span>
+        <br />
+        <br />
         {movie}
       </div>
     </div>

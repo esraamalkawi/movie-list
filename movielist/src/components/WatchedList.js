@@ -9,10 +9,18 @@ const WatchedList = () => {
   const movie = movies
     .filter((movie) => movie.name.toLowerCase().includes(query.toLowerCase()))
     .map((movie) => <MovieItem2 movie={movie} key={movie.id} />);
+
+  const filtered = movies.filter((movie) => movie.watched === true);
+  let cont = filtered.length;
+  console.log(cont);
+  const [counter, setCounter] = useState(cont);
+
   return (
     <div>
-      <h2>Watched list </h2>
+      <h2>Watched list ({filtered.length})</h2>
       <SearchBar setQuery={setQuery} />
+      <br />
+      <br />
       {movie}
     </div>
   );

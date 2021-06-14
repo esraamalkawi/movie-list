@@ -6,12 +6,12 @@ import WatchedList from "./components/WatchedList";
 
 function App() {
   return (
-    <div>
+    <div className=" parent">
       <center>
-        <div style={{ backgroundColor: "cyan" }}>
+        <div>
           <WatchedList />
         </div>
-        <div style={{ backgroundColor: "greenyellow" }}>
+        <div>
           <WatchList />
         </div>
       </center>

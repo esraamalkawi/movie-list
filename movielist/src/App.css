@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,69 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+.parent {
+  display: grid;
+  /* flex-direction: column !important; */
+  justify-content: space-evenly;
+  background-color: #ece4db;
+  width: auto;
+}
+
+.addn {
+  height: 39.5px;
+  width: 60%;
+  margin-top: 17px;
+  background-color: rgba(255, 0, 0, 0.055);
+}
+.sss {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 37%;
+  height: 42.5px;
+  line-height: 30px;
+  outline: 0;
+  border: 0;
+  font-size: 1em;
+  border-radius: 20px;
+  padding: 0 20px;
+  margin-left: 32%;
+  margin-top: 3.5%;
+}
+form:hover {
+  width: 200px;
+  cursor: pointer;
+}
+
+form:hover input {
+  display: block;
+}
+
+form:hover .sss {
+  background: #07051a;
+  color: white;
+}
+
+.dd {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 42.5px;
+  line-height: 30px;
+  outline: 0;
+  border: 0;
+  font-size: 1em;
+  border-radius: 20px;
+  padding: 0 20px;
+  margin-left: 1.8%;
+  /* margin-bottom: 25% !important; */
+  margin-top: 32.5% !important;
+}
+
+form:hover .dd {
+  background: #07051a;
+  color: white;
 }
