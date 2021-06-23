@@ -1,59 +1,61 @@
-import moviesData from "../movies";
-import { ADD_MOVIE, DELETE_MOVIE, SWITCH_LIST, UNSWITCH } from "./actions";
+import {
+  CREATE_TASK,
+  DELETE_TASK,
+  FINISHED_TASK,
+  FETCH_TASKS,
+} from "./actions";
 
-const initialState = {
-  movies: moviesData,
-  counter: 0,
-};
+const initialState = { tasks: [] };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_MOVIE:
-      action.payload.movie.id = state.movies[state.movies.length - 1].id + 1;
+    case CREATE_TASK:
       return {
         ...state,
-        movies: [...state.movies, action.payload.movie],
+        tasks: [...state.tasks, action.payload],
       };
 
-    case DELETE_MOVIE:
-      const movieToKeep = state.movies.filter(
-        (movie) => movie.id !== action.payload.movie.id
+    case DELETE_TASK:
+      const taskToKeep = state.tasks.filter(
+        (task) => task.id !== action.payload.task.id
       );
       return {
         ...state,
-        movies: movieToKeep,
+        tasks: taskToKeep,
       };
 
-    case SWITCH_LIST:
-      const movieToSwitch = state.movies.filter(
-        (movie) => movie.id === action.payload.movie.id
+    // case SWITCH_LIST:
+    //   const movieToSwitch = state.movies.filter(
+    //     (movie) => movie.id === action.payload.movie.id
+    //   );
+
+    //   movieToSwitch[movieToSwitch.length - 1].watched = false;
+
+    //   return {
+    //     ...state,
+    //     movies: state.movies.map((movie) =>
+    //       movie.watch === action.payload.movie.watched
+    //         ? action.payload.movie
+    //         : movie
+    //     ),
+    //   };
+    case FINISHED_TASK:
+      const taskToFinishedList = state.tasks.filter(
+        (task) => task.id === action.payload.task.id
       );
-
-      movieToSwitch[movieToSwitch.length - 1].watched = false;
-      //   const movieToList = state.movies.filter(
-      //     (movie) => movie.id === action.payload.movie.id
-      //   );
-
+      taskToFinishedList[taskToFinishedList.length - 1].status = true;
       return {
         ...state,
-        movies: state.movies.map((movie) =>
-          movie.watch === action.payload.movie.watched
-            ? action.payload.movie
-            : movie
+        tasks: state.tasks.map((task) =>
+          task.status === action.payload.task.status
+            ? action.payload.task
+            : task
         ),
       };
-    case UNSWITCH:
-      const movieToWatchedList = state.movies.filter(
-        (movie) => movie.id === action.payload.movie.id
-      );
-      movieToWatchedList[movieToWatchedList.length - 1].watched = true;
+    case FETCH_TASKS:
       return {
         ...state,
-        movies: state.movies.map((movie) =>
-          movie.watch === action.payload.movie.watched
-            ? action.payload.movie
-            : movie
-        ),
+        tasks: action.payload,
       };
     default:
       return state;

@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import React from "react";
 import WatchList from "./components/WatchList";
 import WatchedList from "./components/WatchedList";
@@ -9,10 +9,10 @@ function App() {
     <div className=" parent">
       <center>
         <div>
-          <WatchedList />
+          <WatchList />
         </div>
         <div>
-          <WatchList />
+          <WatchedList />
         </div>
       </center>
     </div>

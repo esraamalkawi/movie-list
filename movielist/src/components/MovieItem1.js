@@ -1,34 +1,34 @@
 import { useDispatch } from "react-redux";
-import { deleteMovie } from "../store/actions";
+import { deleteTask } from "../store/actions";
 // import { useSelector } from "react-redux";
-import { switchToWatchedList } from "../store/actions";
+import { switchToFinishedList } from "../store/actions";
 
-const MovieItem1 = (props) => {
+const TaskItem1 = (props) => {
   const dispatch = useDispatch();
   const handleDelete = () => {
-    dispatch(deleteMovie(props.movie));
+    dispatch(deleteTask(props.task));
   };
 
   // const selMovies = useSelector((state) => state.movies)
   // selMovies.find((movie) => movie.id===selMovies[selMovies.length-1].id)
   const handleSwitch = () => {
-    dispatch(switchToWatchedList(props.movie));
+    dispatch(switchToFinishedList(props.task));
   };
 
   return (
     <div>
-      <p>{props.movie.watched ? "" : props.movie.name}</p>
+      <p>{props.task.atatus ? "" : props.task.name}</p>
       <span>
-        {props.movie.watched ? (
+        {props.task.status ? (
           ""
         ) : (
           <button onClick={handleSwitch} className="btn btn-success">
-            {"watch"}
+            {"done"}
           </button>
         )}
       </span>
       <span>
-        {props.movie.watched ? (
+        {props.task.status ? (
           ""
         ) : (
           <button onClick={handleDelete} className="btn btn-danger">
@@ -40,4 +40,4 @@ const MovieItem1 = (props) => {
   );
 };
 
-export default MovieItem1;
+export default TaskItem1;

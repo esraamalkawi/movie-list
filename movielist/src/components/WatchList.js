@@ -1,42 +1,35 @@
-import SearchBar from "./SearchBar";
 import { useSelector } from "react-redux";
-import MovieItem from "./MovieItem1";
+import TaskItem from "./MovieItem1";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addMovie } from "../store/actions";
+import { addTask } from "../store/actions";
 
-const WatchList = () => {
+const UnFinishedList = () => {
   const [query, setQuery] = useState("");
   const [add, setAdd] = useState("");
-  //
-  const dispatch = useDispatch();
-  // const counter = useSelector((state) => state.counter);
-  //
-  const movies = useSelector((state) => state.movies);
-  const movie = movies
-    .filter((movie) => movie.name.toLowerCase().includes(query.toLowerCase()))
-    .map((movie) => <MovieItem movie={movie} key={movie.id} />);
 
-  const filtered = movies.filter((movie) => movie.watched === false);
-  let cont = filtered.length;
-  console.log(cont);
-  const [counter, setCounter] = useState(cont);
+  const dispatch = useDispatch();
+
+  const tasks = useSelector((state) => state.tasks);
+  const task = tasks
+    .filter((task) => task.name.toLowerCase().includes(query.toLowerCase()))
+    .map((task) => <TaskItem task={task} key={task.id} />);
+
+  // const filtered = movies.filter((movie) => movie.watched === false);
 
   const handleChange = (event) => {
-    setAdd({ ...movie, [event.target.name]: event.target.value });
+    setAdd({ ...task, [event.target.name]: event.target.value });
   };
 
   const resetInput = () => {
     setAdd({
       name: "",
     });
-    // setCounter(cont);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(addMovie(add));
-    setCounter(counter + 1);
+    dispatch(addTask(add));
     resetInput();
   };
 
@@ -54,21 +47,13 @@ const WatchList = () => {
           />
 
           <button type="submit" className="btn btn-outline-dark">
-            Add a Movie{" "}
+            Add a Task{" "}
           </button>
         </form>
       </div>
-      <div>
-        <h2>Watch list ({counter}) </h2>
-        <span className="dd">
-          <SearchBar setQuery={setQuery} />
-        </span>
-        <br />
-        <br />
-        {movie}
-      </div>
+      <div> unfinished {task}</div>
     </div>
   );
 };
 
-export default WatchList;
+export default UnFinishedList;
